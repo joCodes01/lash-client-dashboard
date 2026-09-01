@@ -24,7 +24,7 @@ I will be removing some of the reqested information fields after learning cybers
 - Style the app.
 - Remove form fields collecting unnecessary information.
 
-## Video (outdated)
+## Video (needs to be updated)
 
 **Video** https://www.youtube.com/watch?v=TUVhsts9-S8
 
