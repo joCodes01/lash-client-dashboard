@@ -31,4 +31,5 @@ I will be removing some of the reqested information fields after learning cybers
 ## Images
 
 ![Dashboard image](README_images/dashboard.png)
+**Image upload**
 ![Image upload image](README_images/image_upload.png)
