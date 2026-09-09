@@ -70,8 +70,13 @@ include 'src/handle_clientrecord.php';
                                     <input type="text" name="lastName" id="lastName" value="<?= htmlspecialchars($row['lastName']) ?>">
                                 </div>
                                 <div>
-                                    <label for="birthDate">Date of birth</label>
-                                    <input type="date" name="birthDate" id="birthDate" value="<?= htmlspecialchars($row['birthDate']) ?>">
+                                    <label for="age">Age</label>
+                                      <select name="age" id="age" value="<?= htmlspecialchars($row['age']) ?>">
+                                        <option selected>choose option</option>
+                                        <option>Under 18 - no parental consent yet</option>
+                                        <option>Under 18 - parental consent given</option>
+                                        <option>Over 18</option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
@@ -84,18 +89,15 @@ include 'src/handle_clientrecord.php';
                                     <input type="text" name="phoneNumber" id="phoneNumber" value="<?= htmlspecialchars($row['phoneNumber']) ?>">
                                 </div>
                                 <div>
-                                    <label for="address">Address</label>
-                                    <input type="text" name="address" id="address" value="<?= htmlspecialchars($row['address']) ?>">
+                                    <!-- placeholder -->
                                 </div>
                             </div>
                             <div>
                                 <div>
-                                    <label for="emergencyContactName">Emergency contact name</label>
-                                    <input type="text" name="emergencyContactName" id="emergencyContactName" value="<?= htmlspecialchars($row['emergencyContactName']) ?>">
+                                    <!-- placeholder -->
                                 </div>
                                 <div>
-                                    <label for="emergencyContactPhone">Emergency contact phone number</label>
-                                    <input type="text" name="emergencyContactPhone" id="emergencyContactPhone" value="<?= htmlspecialchars($row['emergencyContactPhone']) ?>">
+                                    <!-- placeholder -->
                                 </div>
                                 <div>
                                     <label for="medicalConditions">Medical conditions</label>
@@ -121,20 +123,21 @@ include 'src/handle_clientrecord.php';
                                 </div>
                             </div>
                             <div>
+                                <h2>Patch test</h2>
                                 <div>
-                                    <label for="adhesivePatchTest">Adhesive patch test</label>
+                                    <label for="adhesivePatchTest">Adhesive</label>
                                     <input type="text" name="adhesivePatchTest" id="adhesivePatchTest" value="<?= htmlspecialchars($row['adhesivePatchTest']) ?>">
                                 </div>
                                 <div>
-                                    <label for="removerPatchTest">Remover patch test</label>
+                                    <label for="removerPatchTest">Remover</label>
                                     <input type="text" name="removerPatchTest" id="removerPatchTest" value="<?= htmlspecialchars($row['removerPatchTest']) ?>">
                                 </div>
                                 <div>
-                                    <label for="tintPatchTest">Tint patch test</label>
+                                    <label for="tintPatchTest">Tint</label>
                                     <input type="text" name="tintPatchTest" id="tintPatchTest" value="<?= htmlspecialchars($row['tintPatchTest']) ?>">
                                 </div>
                                 <div>
-                                    <label for="liftPatchTest">Lift patch test</label>
+                                    <label for="liftPatchTest">Lift</label>
                                     <input type="text" name="liftPatchTest" id="liftPatchTest" value="<?= htmlspecialchars($row['liftPatchTest']) ?>">
                                 </div>
                             </div>
@@ -169,18 +172,22 @@ include 'src/handle_clientrecord.php';
                                         <label for="appType">Appointment type</label>
                                         <select name="appType" id="appType">
                                             <option selected><?=$approw['appType']?></option>
-                                            <option>Lash extensions - classic full set: 120</option>
-                                            <option>Lash extensions - hybrid: 140</option>
-                                            <option>Lash extensions - light volume: 160</option>
-                                            <option>Lash extensions - half set: 90</option>
-                                            <option>Lash extensions - classic - infills (up to 3 weeks): 90</option>
-                                            <option>Lash extensions - hybrid - infills (up to 3 weeks): 100</option>
-                                            <option>Lash extensions - light volume - infills (up to 3 weeks): 110</option>
-                                            <option>Lash extensions - removal: 35</option>
-                                            <option>Lash lift & tint: 95</option>
-                                            <option>Lash lift: 80</option>
-                                            <option>Lash tint: 30</option>
+                                            <option>Lash extensions - classic full set</option>
+                                            <option>Lash extensions - hybrid</option>
+                                            <option>Lash extensions - light volume</option>
+                                            <option>Lash extensions - half set</option>
+                                            <option>Lash extensions - classic - infills (up to 2 weeks)</option>
+                                            <option>Lash extensions - classic - infills (up to 3 weeks)</option>
+                                            <option>Lash extensions - hybrid - infills (up to 2 weeks)</option>
+                                            <option>Lash extensions - hybrid - infills (up to 3 weeks)</option>
+                                            <option>Lash extensions - light volume - infills (up to 2 weeks)</option>
+                                            <option>Lash extensions - light volume - infills (up to 3 weeks)</option>
+                                            <option>Lash extensions - removal</option>
+                                            <option>Lash lift & tint</option>
+                                            <option>Lash lift</option>
+                                            <option>Lash tint</option>
                                             <option>Consultation</option>
+                                            <option>Parental consent image</option>
                                         </select>
                                     </div>
                             </div>
@@ -189,6 +196,7 @@ include 'src/handle_clientrecord.php';
                                 <div>
                                     <label for="cost">Cost</label>
                                     <input type="number" name="cost" id="cost" value="<?=htmlspecialchars($approw['cost'])?>">
+                                    
                                 </div>
                                 <div>
                                     <label for="appDate">Date</label>
@@ -207,36 +215,90 @@ include 'src/handle_clientrecord.php';
                                 <div>
                                     <label for="lashLength">Lash lengths on right eye</label>
                                     <input type="text" name="lashLength" id="lashLength" value="<?=htmlspecialchars($approw['lashLength'])?>">
+                                    
                                 </div>
                                 <div>
                                     <label for="lashBrand">Lash brand</label>
-                                    <input type="text" name="lashBrand" id="lashBrand" value="<?=htmlspecialchars($approw['lashBrand'])?>">
+                                    <select name="lashBrand" id="lashBrand" value="<?=htmlspecialchars($approw['lashBrand'])?>">
+                                        <option selected>choose option</option>
+                                        <option>My Lash Store</option>
+                                        <option>Lash Jungle</option>
+                                        <option>LBLA</option>
+                                        <option>EnvoLash</option>
+                                        <option>London Lash</option>
+                                        <option>Elleebana - elleplex profusion</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="lashWidth">Lash diameter</label>
-                                    <input type="text" name="lashWidth" id="lashWidth" value="<?=htmlspecialchars($approw['lashWidth'])?>">
+                                      <select name="lashWidth" id="lashWidth" value="<?=htmlspecialchars($approw['lashWidth'])?>">
+                                        <option selected>choose option</option>
+                                        <option>0.5</option>
+                                        <option>0.7</option>
+                                        <option>0.1</option>
+                                        <option>0.15</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="lashCurl">Lash curl</label>
-                                    <input type="text" name="lashCurl" id="lashCurl" value="<?=htmlspecialchars($approw['lashCurl'])?>">
+                                      <select name="lashCurl" id="lashCurl" value="<?=htmlspecialchars($approw['lashCurl'])?>">
+                                        <option selected>choose option</option>
+                                        <option>B</option>
+                                        <option>C</option>
+                                        <option>D</option>
+                                        <option>rods - small</option>
+                                        <option>rods - medium</option>
+                                        <option>rods - large</option>
+                                        <option>shields - small</option>
+                                        <option>shields - medium</option>
+                                        <option>shields - large </option>
+                                        <option>hybrid - small</option>
+                                        <option>hybrid - medium</option>
+                                        <option>hybrid - large</option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
                                 <div>
                                     <label for="adhesive">Adhesive</label>
-                                    <input type="text" name="adhesive" id="adhesive" value="<?=htmlspecialchars($approw['adhesive'])?>">
+                                        <select name="adhesive" id="adhesive" value="<?=htmlspecialchars($approw['adhesive'])?>">
+                                        <option selected>choose option</option>
+                                        <option>-</option>
+                                        <option>My Lash Store - Strong Hold</option>
+                                        <option>Lash Store HQ - Rapid Bond</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="remover">Remover</label>
-                                    <input type="text" name="remover" id="remover" value="<?=htmlspecialchars($approw['remover'])?>">
+                                    <select name="remover" id="remover" value="<?=htmlspecialchars($approw['remover'])?>">
+                                        <option selected>choose option</option> 
+                                        <option>-</option>
+                                        <option>BL lashes cream remover</option>
+                                        <option>Lash V - Professional eyelash adhesive remover</option>
+                                        <option>Lash store HQ - Lash Reset, jelly remover - </option>
+                                        <option>EnvoLash - cream remover</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="tint">Tint</label>
-                                    <input type="text" name="tint" id="tint" value="<?=htmlspecialchars($approw['tint'])?>">
+                                     <select name="tint" id="tint" value="<?=htmlspecialchars($approw['tint'])?>">
+                                        <option selected>choose option</option>
+                                        <option>-</option>
+                                        <option>Elleplex profusion - black</option>
+                                        <option>Elleplex profusion - blue/black</option>
+                                        <option>Refectocil - black</option>
+                                        <option>Refectocil - blue/black</option>
+                                        <option>Refectocil - brown</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="lift">Lift</label>
-                                    <input type="text" name="lift" id="lift" value="<?=htmlspecialchars($approw['lift'])?>">
+                                        <select name="lift" id="lift" value="<?=htmlspecialchars($approw['lift'])?>?>">
+                                        <option selected>choose option</option>
+                                        <option>-</option>
+                                        <option>Elleplex profusion</option>
+                                        <option>My Lash Store - Total Care</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="notes-container">

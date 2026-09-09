@@ -47,6 +47,7 @@ include 'src/handle_dashboard.php';
             
                             $row = $result->fetch_all(MYSQLI_ASSOC);
                             foreach($row as $clientItem): ?>
+                            <?php $_SESSION['appID'] = '00'; ?>
                             
                                 <div class="client-listitem-container">
                                     <form method="POST" action="">

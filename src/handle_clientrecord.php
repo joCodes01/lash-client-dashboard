@@ -33,23 +33,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             if(isset($_POST['lastName'])){
                 $lastName = $_POST['lastName'];
             }
-            if(isset($_POST['birthDate'])){
-                $birthDate = $_POST['birthDate'];
+            if(isset($_POST['age'])){
+                $age = $_POST['age'];
             }
             if(isset($_POST['email'])){
                 $email = $_POST['email'];
             }
             if(isset($_POST['phoneNumber'])){
                 $phoneNumber = $_POST['phoneNumber'];
-            }
-            if(isset($_POST['address'])){
-                $address = $_POST['address'];
-            }
-            if(isset($_POST['emergencyContactName'])){
-                $emergencyContactName = $_POST['emergencyContactName'];
-            }
-            if(isset($_POST['emergencyContactPhone'])){
-                $emergencyContactPhone = $_POST['emergencyContactPhone'];
             }
             if(isset($_POST['contactLenses'])){
                 $contactLenses = $_POST['contactLenses'];
@@ -105,12 +96,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt = $conn->prepare("INSERT INTO clients (
                         firstName, 
                         lastName, 
-                        birthDate, 
+                        age, 
                         email, 
                         phoneNumber, 
-                        address, 
-                        emergencyContactName, 
-                        emergencyContactPhone, 
                         contactLenses, 
                         medicalConditions, 
                         allergies, 
@@ -119,17 +107,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         removerPatchTest,
                         tintPatchTest,
                         liftPatchTest,
-                        clientNotes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        clientNotes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 
-                    $stmt->bind_param("sssssssssssssssss", 
+                    $stmt->bind_param("ssssssssssssss", 
                         $firstName, 
                         $lastName, 
-                        $birthDate, 
+                        $age, 
                         $email, 
                         $phoneNumber, 
-                        $address, 
-                        $emergencyContactName, 
-                        $emergencyContactPhone,
                         $contactLenses,
                         $medicalConditions,
                         $allergies,
@@ -152,12 +137,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt = $conn->prepare("UPDATE clients SET 
                     firstName = ?, 
                     lastName = ?, 
-                    birthDate = ?, 
+                    age = ?, 
                     email = ?, 
                     phoneNumber = ?,
-                    address = ?,
-                    emergencyContactName = ?, 
-                    emergencyContactPhone = ?,
                     contactLenses = ?,
                     medicalConditions = ?,
                     allergies = ?, 
@@ -168,15 +150,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     liftPatchTest = ?,
                     clientNotes = ? WHERE clientID = ?;");
 
-                $stmt->bind_param("sssssssssssssssssi", 
+                $stmt->bind_param("ssssssssssssssi", 
                     $firstName, 
                     $lastName,        
-                    $birthDate, 
+                    $age, 
                     $email, 
-                    $phoneNumber,  
-                    $address, 
-                    $emergencyContactName,  
-                    $emergencyContactPhone,       
+                    $phoneNumber,    
                     $contactLenses,
                     $medicalConditions,
                     $allergies,
@@ -204,8 +183,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute();
                 $stmt->close();
                }
-
-               header('Location: dashboard.php');
+                $_SESSION['appID'] = '00';
+               header('Location: clientrecord.php');
         }
 //APPOINTMENT FORM
 
@@ -534,7 +513,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute();
                 $stmt->close();
                }
-               header('Location: dashboard.php');
+               $_SESSION['appID'] = '00';
+               header('Location: clientrecord.php');
         }
     }
 }
@@ -555,12 +535,9 @@ if($result->num_rows > 0) {
 }else {
     $row['firstName'] = "";
     $row['lastName'] = "";
-    $row['birthDate'] = "";
+    $row['age'] = "";
     $row['email'] = "";
     $row['phoneNumber'] = "";
-    $row['address'] = "";
-    $row['emergencyContactName'] = "";
-    $row['emergencyContactPhone'] = "";
     $row['contactLenses'] = "";
     $row['medicalConditions'] = "";
     $row['allergies'] = "";
