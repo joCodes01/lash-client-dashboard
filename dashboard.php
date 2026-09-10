@@ -27,7 +27,7 @@ include 'src/handle_dashboard.php';
         <main>
             <h1>Dashboard</h1>
             <div class="dashboard-container">
-                <section class="form-container-client">
+                <section class="form-container-dashboard">
                     <div class="clients-heading-container">
                         <h2>Clients</h2>
                         <form method="POST" action="">
@@ -64,7 +64,7 @@ include 'src/handle_dashboard.php';
                             }
                             ?>
                 </section>
-                <section class="form-container-client">
+                <section class="form-container-dashboard">
                     <div class="appointments-heading-container">
                         <h2>Appointments</h2>
                             <form method="POST" action="">
@@ -102,17 +102,15 @@ include 'src/handle_dashboard.php';
                                                     <input type="hidden" name="appID" value="<?= htmlspecialchars($appItem['appID']) ?>">
                                                     <input type="hidden" name="clientID" value="<?= $appItem['clientID'] ?>">
             
+                                                    <p class="app-client-name" id="appClientName"><?=htmlspecialchars($appItem['firstName']) . " " . htmlspecialchars($appItem['lastName']) ?></p>
+                                                    <p><?= htmlspecialchars($appItem['appType'])?></p>
                                                     <div class="app-date-container">
                                                         <p class="display-date"><?= htmlspecialchars($appItem['appDate'])?></p>
                                                         <p class="display-time"><?= htmlspecialchars($appItem['appTime'])?></p>
                                                         <button class="details-btn" type="submit">Details</button>
                                                     </div>
-            
-                                                    <p id="appClientName"><?=htmlspecialchars($appItem['firstName']) . " " . htmlspecialchars($appItem['lastName']) ?></p>
-                                                    <p><?= htmlspecialchars($appItem['appType'])?></p>
                                                 </form>
                                         </div>
-            
                                     <?php endforeach;
                                     }else{
                                         $conn->close();
@@ -134,12 +132,13 @@ include 'src/handle_dashboard.php';
                                             <input type="hidden" name="formID" value="viewApp">
                                             <input type="hidden" name="appID" value="<?= htmlspecialchars($appItem['appID']) ?>">
                                             <input type="hidden" name="clientID" value="<?= htmlspecialchars($appItem['clientID']) ?>">
+                                            <p><?= htmlspecialchars($appItem['appType']) ?></p>
                                             <div class="app-date-container">
                                                 <p class="display-date"><?= htmlspecialchars($appItem['appDate'])?></p>
                                                 <p class="display-time"><?= htmlspecialchars($appItem['appTime'])?></p>
                                                 <button class="details-btn" type="submit">Details</button>
                                             </div>
-                                            <p><?= htmlspecialchars($appItem['appType']) ?></p>
+                                            
                                         </form>
             
                                 <?php endforeach;

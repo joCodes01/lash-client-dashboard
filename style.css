@@ -22,6 +22,49 @@
   --col-brand-darkest: #001e21;
   --col-brand-accent: #ea2da0;
 }
+.bold {
+  font-weight: 600;
+}
+.r-space {
+  margin-right: 1rem;
+}
+/* * {
+  border: 0.1px solid gray;
+} */
+h1 {
+  text-align: center;
+  color: var(--col-darkest);
+  margin-top: 2rem;
+}
+button {
+  background-color: #66b1a8;
+  border: none;
+  border-radius: 50px;
+  padding: 0.3rem 0.7rem;
+  width: fit-content;
+  text-wrap: nowrap;
+  margin: 0 0.5rem;
+  color: black;
+  font-size: 0.8rem;
+}
+label {
+  margin: 0.5rem 0 0.3rem 0;
+}
+input,
+select,
+textarea {
+  padding: 0.1rem;
+  font-size: 0.8rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+textarea {
+  height: 250px;
+  width: 100%;
+  background: var(--col-grey-50);
+  resize: none;
+  padding: 0.3rem;
+  border-radius: 3px;
+}
 body {
   padding: 0;
   margin: 0;
@@ -31,25 +74,6 @@ body {
 header {
   height: 120px;
   background-color: white;
-}
-nav {
-  height: 40px;
-}
-.back-link {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-h1 {
-  text-align: center;
-  color: var(--col-darkest);
-  margin-top: 2rem;
-}
-label {
-  margin: 0.5rem 0 0.3rem 0;
-}
-.client-record-container {
-  min-width: 1060px;
 }
 .nav-container {
   margin: 0;
@@ -75,14 +99,16 @@ label {
   text-decoration: none;
   color: var(--col-brand-darkest);
 }
-.form-container {
-  padding: 3rem;
-  background-color: transparent;
-  width: 90%;
-  margin-right: auto;
-  margin-left: auto;
+
+/* DASHBOARD PAGE */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: fit-content;
+  min-height: 95vh;
+  padding-bottom: 6rem;
 }
-.form-container-client {
+.form-container-dashboard {
   padding: 3rem;
   margin: 2rem;
   background-color: var(--col-grey-100);
@@ -90,29 +116,8 @@ label {
   margin-right: auto;
   margin-left: auto;
 }
-.CRUD-form {
-  display: flex;
-  flex-direction: column;
-}
-.appointment-record-container {
-  margin: 4rem;
-  border-radius: 20px;
-  padding: 2rem;
-}
-.appointment-record-container img {
-  max-width: 200px;
-}
-.appointment-record-container h2 {
-  margin-bottom: 3rem;
-  margin-top: 2rem;
-}
-.appointments-name {
-  margin-bottom: 1rem;
-}
-.app-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
+
+/* Dashboard - Clients form */
 .clients-heading-container {
   display: flex;
   flex-direction: row;
@@ -120,23 +125,13 @@ label {
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-.appointments-heading-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  height: 65px;
-}
-.client-name-btn {
-  background-color: var(--col-white-lightest);
+#addNewClient {
+  padding: 1rem;
   border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  text-align: left;
-  padding-left: 1rem;
+  background-color: transparent;
+}
+#addNewClient img {
+  width: 22px;
 }
 .client-listitem-container {
   margin-bottom: 0.5rem;
@@ -153,41 +148,74 @@ label {
   justify-content: space-between;
   height: 60px;
 }
-.client-record-btn {
-  margin-right: 1rem;
-  padding: 0.3rem;
-  width: 150px;
+.client-name-btn {
+  background-color: var(--col-white-lightest);
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  text-align: left;
+  padding-left: 1rem;
 }
-.show-all-btn {
-  padding: 0.3rem;
+
+/* Dashboard - Appointments form */
+.appointments-heading-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
 }
-.details-btn {
-  padding: 0.3rem;
+.app-listitem-container {
+  border-radius: 10px;
+  border: 0.1px solid var(--col-grey-150);
+  box-shadow: 1px 1px 2px var(--col-grey-box-shadow);
+  background-color: var(--col-white-lightest);
+  padding: 1rem;
+  margin-bottom: 0.5rem;
 }
 .app-date-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-top: 0.2rem;
 }
 .app-date-container button {
   margin-left: auto;
 }
-.app-listitem-container {
-  background-color: var(--col-white-lightest);
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 3px;
+.display-time {
+  margin-left: 1.5rem;
 }
-#appClientName {
-  margin: 0;
+.app-client-name {
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
 }
-.app-listitem-container-single form {
-  border: 1px solid lightgray;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 10px;
-  background-color: var(--col-white-lightest);
+
+/* CLIENT RECORD PAGE */
+
+.client-record-container {
+  min-width: 1060px;
 }
+.form-container {
+  padding: 3rem;
+  background-color: transparent;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: var(--col-grey-100);
+  margin-bottom: 2rem;
+  border-radius: 20px;
+}
+.CRUD-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Client record form */
+
 .client-name-section {
   display: flex;
   flex-direction: column;
@@ -202,54 +230,29 @@ label {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-  background-color: var(--col-grey-100);
 }
 .client-record-inner-container > div {
   display: flex;
   padding: 2rem;
   flex-direction: column;
   margin: 0.5rem;
-
   border-radius: 10px;
   min-width: 400px;
-}
-#clientForm button {
-  margin-top: 2rem;
-  width: fit-content;
-  padding: 0.5rem 1rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-#clientNotes {
-  height: 250px;
-  width: 100%;
-  padding: 0.5rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background: var(--col-grey-50);
-  resize: none;
-}
-.dashboard-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: fit-content;
-  min-height: 95vh;
-  padding-bottom: 6rem;
 }
 #clientForm div div div {
   display: flex;
   flex-direction: column;
 }
-#addNewClient {
-  padding: 1rem;
-  border: none;
-  background-color: transparent;
+.client-record-container button {
+  margin: 0 auto;
+  margin-top: 1rem;
 }
-#addNewClient img {
-  width: 30px;
-}
-.appointment-heading-container select {
-  width: fit-content;
-  margin-bottom: 2rem;
+
+/* Appointment details form */
+
+.appointment-form-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 .appointment-heading-container {
   display: flex;
@@ -257,23 +260,20 @@ label {
   justify-content: center;
   align-items: center;
 }
-.appointment-form-container h2 {
-  text-align: center;
-  margin-bottom: 1rem;
+.app-type-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.appointment-form-container {
-  background-color: var(--col-grey-100);
+.appointment-heading-container select {
+  width: fit-content;
+  margin-bottom: 2rem;
 }
 .appointment-details-container {
   padding: 0 3rem;
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
-.app-type-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .appointment-details-container > div {
   background-color: var(--col-grey-50);
@@ -298,6 +298,9 @@ label {
   display: flex;
   flex-direction: column;
   margin: 2rem 2rem 0 2rem;
+  border: 0.2px solid var(--col-grey-box-shadow);
+  padding: 1rem;
+  border-radius: 10px;
 }
 #beforePhotoImage,
 #afterPhotoImage {
@@ -311,12 +314,65 @@ label {
   flex-direction: column;
   padding-top: 2rem;
 }
-#appForm button {
-  width: fit-content;
-  margin-top: 2rem;
-  padding: 0.5rem 1rem;
+
+/* Appointment previous records section  */
+.prev-apps-title {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.appointment-record-container {
+  margin: 1rem 4rem;
+  border-radius: 20px;
+  padding: 2rem;
+}
+.appointment-record-container h2 {
+  margin-bottom: 1rem;
+}
+.appointments-name {
+  margin-bottom: 1rem;
+}
+.app-container {
+  display: flex;
+  flex-direction: row;
+}
+.app-title {
+  display: flex;
+  flex-direction: row;
+}
+.app-time {
+  display: flex;
+  flex-direction: row;
   margin-left: auto;
-  margin-right: auto;
+  align-items: center;
+}
+.app-time p {
+  margin-left: 1rem;
+}
+.duration {
+  margin-left: auto;
+}
+.app-item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.2rem;
+}
+.app-item-group {
+  border: 0.2px solid var(--col-grey-box-shadow);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  background-color: white;
+}
+.app-listitem-container-single form {
+  border: 1px solid lightgray;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  background-color: var(--col-white-lightest);
 }
 .appointment-record-container {
   background-color: var(--col-grey-100);
@@ -324,6 +380,9 @@ label {
 }
 .app-grid div {
   padding: 1rem 1rem 1rem 0;
+}
+.appointment-record-container img {
+  max-width: 200px;
 }
 .photos {
   margin-top: 2rem;
@@ -342,35 +401,23 @@ label {
   background: var(--col-white-lightest);
   resize: none;
 }
-.display-time {
-  margin-left: 1.5rem;
-}
-.screenshot {
-  max-width: 80%;
-  margin: 5rem auto 5rem auto;
-}
-.screenshot img {
-  max-width: 100%;
-}
-.include-video {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 2rem;
-}
 .app-text {
   padding-right: 4rem;
 }
-.include-video iframe {
-  width: 100%;
+.view-appointment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
-@media screen and (max-width: 900px) {
-  .include-video {
-    flex-direction: column;
-  }
-  .include-video iframe {
-    max-width: 100%;
-  }
-  .app-text {
-    padding-right: 0;
-  }
+.view-appointment p {
+  text-align: right;
+
+  margin: 0.3rem 1rem;
+}
+
+.line {
+  width: 100%;
+  background-color: var(--col-brand-mid);
+  height: 2px;
+  margin-top: 1rem;
 }

@@ -131,6 +131,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             //if the form is set to Update then update the existing record
             if($_POST['CRUDclient'] == 'UPDATE') {
 
+                if($_SESSION['appID'] == '00') {
+                    header('Location: clientrecord.php');
+                }
+
                 //connect to the database
                 include 'src/dbconnect.php';
               
