@@ -43,7 +43,6 @@ button {
   padding: 0.3rem 0.7rem;
   width: fit-content;
   text-wrap: nowrap;
-  /* margin: 0 0.5rem; */
   color: black;
   font-size: 0.8rem;
 }
@@ -55,7 +54,6 @@ label {
   margin: 0.5rem 0 0.3rem 0;
 }
 table {
-  /* table-layout: fixed; */
   width: 100%;
 }
 tr {
@@ -89,7 +87,6 @@ textarea {
   border-radius: 3px;
   border: 0.2px solid var(--col-grey-box-shadow);
 }
-
 .textarea-large {
   height: 250px;
 }
@@ -148,7 +145,7 @@ header {
   margin-left: auto;
 }
 
-/* Dashboard - Clients form */
+/* DASHBOARD - Clients form */
 .clients-heading-container {
   display: flex;
   flex-direction: row;
@@ -207,12 +204,11 @@ header {
   text-decoration: underline;
   color: var(--col-brand-dark);
 }
-
 #client-app-btn img {
   width: 10px;
 }
 
-/* Dashboard - Appointments form */
+/* DASHBOARD- Appointments form */
 .appointments-heading-container {
   display: flex;
   flex-direction: row;
@@ -247,7 +243,6 @@ header {
 }
 
 /* CLIENT RECORD PAGE */
-
 .client-record-container {
   min-width: 1060px;
 }
@@ -261,13 +256,19 @@ header {
   margin-bottom: 2rem;
   border-radius: 20px;
 }
+.new-appointment-button-form {
+  width: 100%;
+  display: flex;
+}
+#client-app-btn {
+  margin-left: auto;
+}
 .CRUD-form {
   display: flex;
   flex-direction: column;
 }
 
-/* Client record form */
-
+/* CLIENT RECORD FORM */
 .client-name-section {
   display: flex;
   flex-direction: column;
@@ -295,13 +296,12 @@ header {
   display: flex;
   flex-direction: column;
 }
-.client-record-container button {
+.client-record-container .submit {
   margin: 0 auto;
   margin-top: 1rem;
 }
 
-/* Appointment details form */
-
+/* APPOINTMENT FORM */
 .appointment-form-container h2 {
   text-align: center;
   margin-bottom: 1rem;
@@ -374,13 +374,12 @@ header {
   margin-top: 1rem;
 }
 
-/* Appointment previous records section  */
+/* PREVIOUS APPOINTMENTS SECTION  */
 .prev-apps-title {
   text-align: center;
   margin-top: 3rem;
   margin-bottom: 1rem;
 }
-
 .appointment-record-container {
   margin: 1rem 4rem;
   border-radius: 20px;
@@ -488,7 +487,6 @@ header {
 .appointment-footer table {
   max-width: 440px;
 }
-
 .line {
   width: 100%;
   background-color: var(--col-brand-mid);

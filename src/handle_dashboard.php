@@ -12,8 +12,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             header( 'Location: appointment.php');
             exit;
         }
-
-
         //if the form submitted is the client item form then do these checks
         if($_POST['formID'] == 'clientItemForm') {
             //set the session client ID

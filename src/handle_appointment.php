@@ -63,6 +63,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             if(isset($_POST['lift'])){
                 $lift = $_POST['lift'];
             }
+            if(isset($_POST['primer'])){
+                $primer = $_POST['primer'];
+            }
+            if(isset($_POST['bonder'])){
+                $bonder = $_POST['bonder'];
+            }
+            if(isset($_POST['cleanser'])){
+                $cleanser = $_POST['cleanser'];
+            }
             if(isset($_POST['appNotes'])){
                 $appNotes = $_POST['appNotes'];
             }
@@ -219,11 +228,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result = $stmt->get_result();
 
                 //if the record exists echo error message
-                if($result->num_rows > 0){
+                // if($result->num_rows > 0){
             
-                    $message = "sorry an appointment for this date already exists for client ID: " . htmlspecialchars($appClientID);
-                    echo "<script>alert(" .  json_encode($message) . ")</script>";
-                }else {
+                //     $message = "sorry an appointment for this date already exists for client ID: " . htmlspecialchars($appClientID);
+                //     echo "<script>alert(" .  json_encode($message) . ")</script>";
+                // }else {
 
                 //Select all appointments with the clientID from the database
                 //check if there is an appointment with this clientID on the same date?
@@ -246,11 +255,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         remover, 
                         tint, 
                         lift, 
+                        primer,
+                        bonder,
+                        cleanser,
                         appNotes,
                         beforePhoto,
-                        afterPhoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        afterPhoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-                    $stmt->bind_param("isssssssssssssssss", 
+                    $stmt->bind_param("issssssssssssssssssss", 
                         $appClientID,
                         $appType,    
                         $cost,
@@ -266,6 +278,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         $remover,
                         $tint,
                         $lift,
+                        $primer,
+                        $bonder,
+                        $cleanser,
                         $appNotes,
                         $beforePhoto,
                         $afterPhoto); 
@@ -273,7 +288,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->execute();
                     $stmt->close();
                 }
-            }
+            // }
             if($_POST['CRUDapp'] == 'UPDATE') {
 
                 include 'src/dbconnect.php';
@@ -292,12 +307,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     remover = ?, 
                     tint = ?, 
                     lift = ?, 
-                    appNotes = ?, 
+                    primer = ?,
+                    primer = ?,
+                    bonder = ?, 
+                    cleanser = ?,
                     beforePhoto = ?, 
                     afterPhoto = ?
                 WHERE appID = ?");
 
-                $stmt->bind_param("sssssssssssssssssi",
+                $stmt->bind_param("ssssssssssssssssssssi",
                     $appType,
                     $cost,
                     $discount,
@@ -312,6 +330,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $remover,
                     $tint,
                     $lift,
+                    $primer,
+                    $bonder,
+                    $cleanser,
                     $appNotes,
                     $beforePhoto,
                     $afterPhoto,
@@ -334,7 +355,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['appID'] = '00';
             header('Location: clientrecord.php');
         }
-
 }
 
 include 'src/dbconnect.php';
@@ -344,7 +364,6 @@ $stmt = $conn->prepare("SELECT * FROM clients WHERE clientID = ? ");
 $stmt->bind_param('i', $client);
 $stmt->execute();
 $result = $stmt->get_result();
-
 
 if($result->num_rows > 0) {
     // echo "client found";
@@ -395,6 +414,9 @@ if($result->num_rows > 0) {
     $approw['remover'] = "";
     $approw['tint'] = "";
     $approw['lift'] = "";
+    $approw['primer'] = "";
+    $approw['bonder'] = "";
+    $approw['cleanser'] = "";
     $approw['appNotes'] = "";
     $approw['beforePhoto'] = "";
     $approw['afterPhoto'] = "";

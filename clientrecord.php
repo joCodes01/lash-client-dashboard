@@ -29,6 +29,14 @@ include 'src/handle_appointment.php';
             <!-- <h1>Client Record</h1> -->
             <div class="client-record-container">
                 <div class="form-container">
+                      <!-- ADD NEW APPOINTMENT -->
+                     <form class="new-appointment-button-form" method="POST" action="">
+                        <input type="hidden" name="formID" id="clientNewRecordApp" value="clientNewRecordApp">
+                        <label hidden for="clientID">Client ID</label>
+                        <input hidden type="text" name="clientID" value="<?= htmlspecialchars($_SESSION['clientID'])?>">
+                        <button id="client-app-btn" name="action" type="submit" value="newRecord">New appointment</button>
+                    </form>
+                    
                     <form method="POST" action="" id="clientForm" class="CRUD-form">
                         <!-- FORM ID  hidden   -->
                         <input type="hidden" name="formID" id="clientForm" value="clientForm">
@@ -59,7 +67,7 @@ include 'src/handle_appointment.php';
                                 }
                                 ?>
                             </div>
-                        </div> 
+                        </div>
                         <div class="client-record-inner-container">
                             <div>
                                 <div>
@@ -147,7 +155,7 @@ include 'src/handle_appointment.php';
                             </div>
                             
                         </div>
-                        <button type="submit">Submit</button>
+                        <button class="submit" type="submit">Submit</button>
                         
                     </form>
                 </div>
@@ -214,6 +222,14 @@ include 'src/handle_appointment.php';
                                                 <tr class="app-item">
                                                     <td class="bold r-space">Lift</td>
                                                     <td> <?=htmlspecialchars($appointment['lift'])?> </td>
+                                                </tr>
+                                                 <tr class="app-item">
+                                                    <td class="bold r-space">Primer</td>
+                                                    <td> <?=htmlspecialchars($appointment['primer'])?> </td>
+                                                </tr>
+                                                 <tr class="app-item">
+                                                    <td class="bold r-space">Bonder</td>
+                                                    <td> <?=htmlspecialchars($appointment['bonder'])?> </td>
                                                 </tr>
                                             </table>
                                         </div>
