@@ -9,12 +9,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if($_POST['formID'] == 'viewApp') {
             $_SESSION['appID'] = $_POST['appID'];
             $_SESSION['clientID'] = $_POST['clientID'];
-            header( 'Location: clientrecord.php');
+            header( 'Location: appointment.php');
             exit;
         }
-
-
-
 
 
         //if the form submitted is the client item form then do these checks
@@ -35,6 +32,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = $result->fetch_assoc();
                 $_SESSION['clientName'] = $row['firstName'] . " " . $row['lastName'];
             }
+        }
+        if($_POST['formID'] == 'clientNewApp') {
+        $_SESSION['clientID'] = $_POST['clientID'];
+        $_SESSION['addNewClient'] = '';
+        header('Location: appointment.php');
+        exit;
         }
         if($_POST['formID'] == 'showAllApps') {
             $_SESSION['clientID'] = 'allClients';

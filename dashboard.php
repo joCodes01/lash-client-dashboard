@@ -16,7 +16,7 @@ include 'src/handle_dashboard.php';
         <title>Dashboard</title>
     </head>
     <body>
-            <header class="nav-container">
+        <header class="nav-container">
             <img class="nav-logo" src="images/logo.png" alt="">
             <nav>
                 <ul class="navlist">
@@ -49,13 +49,21 @@ include 'src/handle_dashboard.php';
                             foreach($row as $clientItem): ?>
                             <?php $_SESSION['appID'] = '00'; ?>
                             
-                                <div class="client-listitem-container">
-                                    <form method="POST" action="">
-                                        <input type="hidden" name="formID" id="clientItemForm" value="clientItemForm">
+                                <div class="client-button-container">
+                                    <div class="client-listitem-container">
+                                        <form method="POST" action="">
+                                            <input type="hidden" name="formID" id="clientItemForm" value="clientItemForm">
+                                            <label hidden for="clientID">Client ID</label>
+                                            <input hidden type="text" name="clientID" value="<?= htmlspecialchars($clientItem['clientID'])?>">
+                                            <button class="client-name-btn" name="action" type="submit" value="viewApps"><?=htmlspecialchars($clientItem['firstName']) . " " . htmlspecialchars($clientItem['lastName']) ?></button>
+                                            <button class="client-record-btn" id="client-record-btn" name="action" type="submit" value="viewRecord">Client record</button>
+                                        </form>
+                                    </div>
+                                    <form class="new-button" method="POST" action="">
+                                        <input type="hidden" name="formID" id="clientNewApp" value="clientNewApp">
                                         <label hidden for="clientID">Client ID</label>
                                         <input hidden type="text" name="clientID" value="<?= htmlspecialchars($clientItem['clientID'])?>">
-                                        <button class="client-name-btn" name="action" type="submit" value="viewApps"><?=htmlspecialchars($clientItem['firstName']) . " " . htmlspecialchars($clientItem['lastName']) ?></button>
-                                        <button class="client-record-btn" id="client-record-btn" name="action" type="submit" value="viewRecord">Client record</button>
+                                        <button  id="client-app-btn" name="action" type="submit" value="newRecord"><img src="images/plus.png"></button>
                                     </form>
                                 </div>
                             <?php endforeach;
@@ -94,7 +102,6 @@ include 'src/handle_dashboard.php';
             
                                     // echo "appointment found";
                                     $row = $result->fetch_all(MYSQLI_ASSOC);
-            
                                     foreach($row as $appItem): ?>
                                         <div class="app-listitem-container">
                                             <form method="POST" action="">
