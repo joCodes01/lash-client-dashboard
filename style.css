@@ -29,7 +29,7 @@
   margin-right: 1rem;
 }
 /* * {
-  border: 0.1px solid gray;
+  border: 0.1px solid red;
 } */
 h1 {
   text-align: center;
@@ -47,8 +47,26 @@ button {
   color: black;
   font-size: 0.8rem;
 }
+select {
+  background-color: white;
+  border: 0.1px solid var(--col-grey-box-shadow);
+}
 label {
   margin: 0.5rem 0 0.3rem 0;
+}
+table {
+  /* table-layout: fixed; */
+  width: 100%;
+}
+tr {
+  border: 0.2px solid var(--col-grey-box-shadow);
+  border-collapse: collapse;
+  background-color: white;
+  padding: 0.2rem;
+  border-radius: 3px;
+}
+td {
+  min-width: 80px;
 }
 input,
 select,
@@ -58,12 +76,16 @@ textarea {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 textarea {
-  height: 250px;
   width: 100%;
   background: var(--col-grey-50);
   resize: none;
   padding: 0.3rem;
   border-radius: 3px;
+  border: 0.1px solid var(--col-grey-box-shadow);
+}
+
+.textarea-large {
+  height: 250px;
 }
 body {
   padding: 0;
@@ -335,7 +357,13 @@ header {
 }
 .app-container {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.pastapp-layout {
+  display: flex;
   flex-direction: row;
+  gap: 2rem;
 }
 .app-title {
   display: flex;
@@ -413,6 +441,15 @@ header {
   text-align: right;
 
   margin: 0.3rem 1rem;
+}
+.appointment-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.appointment-footer table {
+  max-width: 440px;
 }
 
 .line {

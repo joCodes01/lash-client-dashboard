@@ -10,7 +10,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['appID'] = $_POST['appID'];
             $_SESSION['clientID'] = $_POST['clientID'];
             header( 'Location: clientrecord.php');
+            exit;
         }
+
+
+
+
+
         //if the form submitted is the client item form then do these checks
         if($_POST['formID'] == 'clientItemForm') {
             //set the session client ID
@@ -18,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if($_POST['action'] == 'viewRecord') {
                 header( "Location: clientrecord.php " );
-                //exit;
+                exit;
             }
             if($_POST['action'] == 'viewApps') {
                 include 'src/dbconnect.php';
@@ -39,6 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['appID'] = "";
             $_SESSION['addNewClient'] = "addNewClient";
             header( "Location: clientrecord.php");
+            exit;
         } 
     }
     if(isset($_GET['resetAppID'])) {

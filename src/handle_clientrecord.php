@@ -1,4 +1,5 @@
 <?php
+
 //set client ID in session variable
 $_SESSION['clientID'] ?? null;
 $_SESSION['appID'] ?? null;
@@ -9,8 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['formID'])){
 
         if($_POST['formID'] == 'appList') {
-          
-                $_SESSION['appID'] = $_POST['appID'];
+            $_SESSION['appID'] = $_POST['appID'];
         }
         if($_POST['formID'] == 'clientForm') {
             
@@ -127,6 +127,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->execute();
                     $stmt->close();
                 } 
+                header('Location: dashboard.php');
+                exit;
             }
             //if the form is set to Update then update the existing record
             if($_POST['CRUDclient'] == 'UPDATE') {
@@ -176,19 +178,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->close();
             }
                 //if client form is set to DELETE then delete the record based on clientID in the form.
-               if($_POST['CRUDclient'] == 'DELETE') {
+            if($_POST['CRUDclient'] == 'DELETE') {
 
-                //connect to the database
-                include 'src/dbconnect.php';
+            //connect to the database
+            include 'src/dbconnect.php';
 
 
-                $stmt = $conn->prepare("DELETE FROM clients WHERE clientID = ?;");
-                $stmt->bind_param("i", $clientID);
-                $stmt->execute();
-                $stmt->close();
-               }
-                $_SESSION['appID'] = '00';
-               header('Location: clientrecord.php');
+            $stmt = $conn->prepare("DELETE FROM clients WHERE clientID = ?;");
+            $stmt->bind_param("i", $clientID);
+            $stmt->execute();
+            $stmt->close();
+            }
+            $_SESSION['appID'] = '00';
+            header('Location: clientrecord.php');
         }
 //APPOINTMENT FORM
 
@@ -212,6 +214,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             if(isset($_POST['cost'])){
                 $cost = $_POST['cost'];
+            }
+             if(isset($_POST['discount'])){
+                $discount = $_POST['discount'];
             }
             if(isset($_POST['appDate'])){
                 $appDate = $_POST['appDate'];
@@ -251,10 +256,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
 
+////CHECK FOR EXISTIMG PHOTOS
+            $existingPhotos = ['beforePhoto' => null, 'afterPhoto' => null];
+            if (!empty($appID) && $appID !== '00') {
+                include 'src/dbconnect.php';
+                $stmt = $conn->prepare("SELECT beforePhoto, afterPhoto FROM appointments WHERE appID = ?");
+                $stmt->bind_param('i', $appID);
+                $stmt->execute();
+                $existingResult = $stmt->get_result();
+                if ($row = $existingResult->fetch_assoc()) {
+                    $existingPhotos = $row;
+                }
+                $stmt->close();
+                $conn->close();
+            }
+
             //image upload
             //make a date string to re-name uploaded images
             $date = new DateTime(); 
             $dateString = date_format($date, 'Y-m-d_H-i-s');
+
+
             
             //UPLOAD BEFORE PHOTO
             if(isset($_FILES['beforePhoto']) && $_FILES["beforePhoto"]["error"] === UPLOAD_ERR_OK) {
@@ -315,13 +337,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     include "src/dbconnect.php";
                 }
             } else {
-                //if no file is uploaded then default to placeholder.jpg
-                if(!empty($approw['beforePhoto'])) {
-                    $beforePhoto = $approw['beforePhoto'];
+                if(!empty($existingPhotos['beforePhoto'])) {
+                    $beforePhoto = $existingPhotos['beforePhoto'];
                 } else {
                     $beforePhoto = "placeholder.jpg";
                 }
             }
+            
 
             //UPLOAD AFTER PHOTO
             if(isset($_FILES['afterPhoto']) && $_FILES["afterPhoto"]["error"] === UPLOAD_ERR_OK) {
@@ -382,16 +404,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     //connect to the database
                     include "src/dbconnect.php";
                 }
-            }else {
-                //if no file is uploaded then default to placeholder.jpg
-                // $afterPhoto = "placeholder.jpg";
-
-                   if(!empty($approw['afterPhoto'])) {
-                    $afterPhoto = $approw['afterPhoto'];
+            } else {
+                if(!empty($existingPhotos['afterPhoto'])) {
+                    $afterPhoto = $existingPhotos['afterPhoto'];
                 } else {
                     $afterPhoto = "placeholder.jpg";
-                }  
+                }
             }
+                        
 
             if($_POST['CRUDapp'] == 'CREATE') {
 
@@ -421,6 +441,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         clientID,
                         appType, 
                         cost, 
+                        discount,
                         appDate, 
                         appTime, 
                         duration, 
@@ -434,12 +455,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         lift, 
                         appNotes,
                         beforePhoto,
-                        afterPhoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        afterPhoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-                    $stmt->bind_param("issssssssssssssss", 
+                    $stmt->bind_param("isssssssssssssssss", 
                         $appClientID,
                         $appType,    
-                        $cost, 
+                        $cost,
+                        $discount, 
                         $appDate, 
                         $appTime, 
                         $duration, 
@@ -466,6 +488,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt = $conn->prepare("UPDATE appointments SET 
                     appType = ?, 
                     cost = ?, 
+                    discount = ?,
                     appDate = ?, 
                     appTime = ?, 
                     duration = ?, 
@@ -482,9 +505,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     afterPhoto = ?
                 WHERE appID = ?");
 
-                $stmt->bind_param("ssssssssssssssssi",
+                $stmt->bind_param("sssssssssssssssssi",
                     $appType,
                     $cost,
+                    $discount,
                     $appDate,
                     $appTime,
                     $duration,
@@ -507,18 +531,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
 
-                //if client form is set to DELETE then delete the record based on clientID in the form.
-               if($_POST['CRUDapp'] == 'DELETE') {
+            //if client form is set to DELETE then delete the record based on clientID in the form.
+            if($_POST['CRUDapp'] == 'DELETE') {
 
-                //connect to the database
-                include 'src/dbconnect.php';
-                $stmt = $conn->prepare("DELETE FROM appointments WHERE appID = ?;");
-                $stmt->bind_param("i", $appID);
-                $stmt->execute();
-                $stmt->close();
-               }
-               $_SESSION['appID'] = '00';
-               header('Location: clientrecord.php');
+            //connect to the database
+            include 'src/dbconnect.php';
+            $stmt = $conn->prepare("DELETE FROM appointments WHERE appID = ?;");
+            $stmt->bind_param("i", $appID);
+            $stmt->execute();
+            $stmt->close();
+            }
+            $_SESSION['appID'] = '00';
+            header('Location: clientrecord.php');
         }
     }
 }
@@ -569,6 +593,7 @@ if($result->num_rows > 0) {
     $approw['appClientID'] = "";
     $approw['appType'] = "";
     $approw['cost'] = "";
+    $approw['discount'] = "";
     $approw['appDate'] = "";
     $approw['appTime'] = "";
     $approw['duration'] = "";
