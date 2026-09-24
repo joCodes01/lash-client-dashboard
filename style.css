@@ -2,8 +2,6 @@
 *:before,
 *:after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 :root {
   --col-background: white;
@@ -22,15 +20,16 @@
   --col-brand-darkest: #001e21;
   --col-brand-accent: #ea2da0;
 }
+
+.BLUR {
+  filter: blur(20px);
+}
 .bold {
   font-weight: 600;
 }
 .r-space {
   margin-right: 1rem;
 }
-/* * {
-  border: 0.1px solid red;
-} */
 h1 {
   text-align: center;
   color: var(--col-darkest);
@@ -89,6 +88,9 @@ textarea {
 }
 .textarea-large {
   height: 250px;
+}
+.textarea-small {
+  height: 100px;
 }
 body {
   padding: 0;
@@ -190,9 +192,7 @@ header {
 }
 .client-listitem-container {
   display: flex;
-
   justify-content: space-between;
-
   width: 100%;
 }
 .client-listitem-container form {
@@ -283,6 +283,8 @@ header {
   background-color: var(--col-grey-100);
   margin-bottom: 2rem;
   border-radius: 20px;
+  border: 0.1px solid var(--col-grey-150);
+  box-shadow: 3px 3px 5px var(--col-grey-box-shadow);
 }
 .new-appointment-button-form {
   width: 100%;
@@ -308,19 +310,22 @@ header {
   margin-bottom: 1rem;
 }
 .client-record-inner-container {
+  margin-right: 2rem;
+}
+.client-record-container1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-items: center;
+  height: fit-content;
 }
 .client-record-inner-container > div {
   display: flex;
-  padding: 2rem;
+
   flex-direction: column;
   margin: 0.5rem;
   border-radius: 10px;
   min-width: 400px;
 }
-#clientForm div div div {
+.client-record-inner-container div div {
   display: flex;
   flex-direction: column;
 }
@@ -328,10 +333,27 @@ header {
   margin: 0 auto;
   margin-top: 1rem;
 }
-.lastused_item {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid red;
+.client-notes-section textarea {
+  height: 90%;
+}
+.lastused-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.lastused-item p {
+  margin: 0;
+}
+.lastused-title {
+  margin-bottom: 0.2rem;
+}
+.lastused-group {
+  border-bottom: 0.2px solid var(--col-grey-box-shadow);
+  padding: 0.2rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.section-lastused {
+  margin-top: 2rem;
 }
 
 /* APPOINTMENT FORM */
@@ -411,12 +433,14 @@ header {
 .prev-apps-title {
   text-align: center;
   margin-top: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: -3rem;
 }
 .appointment-record-container {
-  margin: 1rem 4rem;
+  margin: 4rem 4rem;
   border-radius: 20px;
   padding: 2rem;
+  border: 0.1px solid var(--col-grey-150);
+  box-shadow: 3px 3px 5px var(--col-grey-box-shadow);
 }
 .appointment-record-container h2 {
   margin-bottom: 1rem;
@@ -471,6 +495,10 @@ header {
   border-radius: 10px;
   background-color: var(--col-white-lightest);
 }
+.app-listitem-container-single form p,
+.app-listitem-container p {
+  margin: 0;
+}
 .appointment-record-container {
   background-color: var(--col-grey-100);
   min-width: 1000px;
@@ -498,6 +526,9 @@ header {
   background: var(--col-white-lightest);
   resize: none;
 }
+.appnotes-title {
+  margin-bottom: 0;
+}
 .app-text {
   padding-right: 4rem;
 }
@@ -513,12 +544,13 @@ header {
 }
 .appointment-footer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 1rem;
 }
 .appointment-footer table {
-  max-width: 440px;
+  width: 100%;
+  margin-right: 2rem;
 }
 .line {
   width: 100%;

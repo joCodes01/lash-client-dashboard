@@ -82,7 +82,9 @@ include 'src/handle_appointment.php';
                         </div>             
                     </div>
                     <div class="appointment-details-container">
+                        
                         <div>
+                            <h2>Appointment</h2>
                             <div>
                                 <label for="cost">Cost</label>
                                 <input type="number" name="cost" id="cost" value="<?=htmlspecialchars($approw['cost'])?>">
@@ -93,9 +95,13 @@ include 'src/handle_appointment.php';
                                     <option value="<?= !empty($approw['discount']) ? htmlspecialchars($approw['discount']) : '' ?>" selected>
                                     <?= !empty($approw['discount']) ? htmlspecialchars($approw['discount']) : 'choose option' ?>
                                     </option>
-                                    <option value="20% discount">10% discount</option>
+                                    <option value="No discount">No discount</option>
+                                    <option value="10% discount">10% discount</option>
+                                    <option value="20% discount">20% discount</option>
                                     <option value="20% referral discount">20% referral discount</option>
                                     <option value="100% instagram model discount">100% instagram model discount</option>
+                                    <option value="100% instagram model discount">100% model discount</option>
+                                    <option value="100% discount">100% discount</option>
                                     <option value="Free of charge">Free of charge</option>
                                 </select>
                             </div>
@@ -132,8 +138,36 @@ include 'src/handle_appointment.php';
                             </div>
                         </div>
                         <div>
+                            <h2>Style</h2>
+                              <div>
+                                <label for="lashCurl">Lash curl</label>
+                                    <select name="lashCurl" id="lashCurl">
+                                        <option value="<?= !empty($approw['lashCurl']) ? htmlspecialchars($approw['lashCurl']) : '' ?>" selected>
+                                    <?= !empty($approw['lashCurl']) ? htmlspecialchars($approw['lashCurl']) : 'choose option' ?>
+                                    </option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="rods - small">rods - small</option>
+                                    <option value="rods - medium">rods - medium</option>
+                                    <option value="rods - large">rods - large</option>
+                                    <option value="shields - small">shields - small</option>
+                                    <option value="shields - medium">shields - medium</option>
+                                    <option value="shields - large">shields - large </option>
+                                    <option value="hybrid - small">hybrid - small</option>
+                                    <option value="hybrid - medium">hybrid - medium</option>
+                                    <option value="hybrid - large">hybrid - large</option>
+                                    <option value="hybrid - x large">hybrid - x large</option>
+                                    <option value="universal - x small">universal - x small</option>
+                                    <option value="universal - small">universal - small</option>
+                                    <option value="universal - medium">universal - medium</option>
+                                    <option value="universal - large">universal - large</option>
+                                    <option value="universal - x largwe">universal - x large</option>
+                                    <option value="none">none</option>
+                                </select>
+                            </div>
                             <div>
-                                <label for="lashStyle">Style</label>
+                                <label for="lashStyle">Lash map</label>
                                 <select name="lashStyle" id="lashStyle">
                                     <option value="<?= !empty($approw['lashStyle']) ? htmlspecialchars($approw['lashStyle']) : '' ?>" selected>
                                     <?= !empty($approw['lashStyle']) ? htmlspecialchars($approw['lashStyle']) : 'choose option' ?>
@@ -147,7 +181,33 @@ include 'src/handle_appointment.php';
                             </div>
                             <div>
                                 <label for="lashLength">Lash lengths</label>
-                                <input type="text" name="lashLength" id="lashLength" value="<?=htmlspecialchars($approw['lashLength'])?>"> 
+                                   <select name="lashLength" id="lashLength">
+                                    <option value="<?= !empty($approw['lashLength']) ? htmlspecialchars($approw['lashLength']) : '' ?>" selected>
+                                    <?= !empty($approw['lashLength']) ? htmlspecialchars($approw['lashLength']) : 'choose option' ?>
+                                    </option>
+                                    <option value="7 - 8">7 - 8</option>
+                                    <option value="7 - 9">7 - 9</option>
+                                    <option value="7 - 10">7 - 10</option>
+                                    <option value="7 - 11">7 - 11</option>
+                                    <option value="7 - 12">7 - 12</option>
+                                    <option value="7 - 13">7 - 13</option>
+                                    <option value="7 - 14">7 - 14</option>
+                                    <option value="7 - 15">7 - 15</option>
+                                    <option value="8 - 9">8 - 9</option>
+                                    <option value="8 - 10">8 - 10</option>
+                                    <option value="8 - 11">8 - 11</option>
+                                    <option value="8 - 12">8 - 12</option>
+                                    <option value="8 - 13">8 - 13</option>
+                                    <option value="8 - 14">8 - 14</option>
+                                    <option value="8 - 15">8 - 15</option>
+                                    <option value="9 - 10">9 - 10</option>
+                                    <option value="9 - 11">9 - 11</option>
+                                    <option value="9 - 12">9 - 12</option>
+                                    <option value="9 - 13">9 - 13</option>
+                                    <option value="9 - 14">9 - 14</option>
+                                    <option value="9 - 15">9 - 15</option>
+                                    <option value="none">none</option>
+                                </select>
                             </div>
                             <div>
                                 <label for="lashBrand">Lash brand</label>
@@ -176,29 +236,46 @@ include 'src/handle_appointment.php';
                                     <option value="none">none</option>
                                 </select>
                             </div>
+                            
+                        </div>
+                        <div>
+                            <h2>Liquids</h2>
                             <div>
-                                <label for="lashCurl">Lash curl</label>
-                                    <select name="lashCurl" id="lashCurl">
-                                        <option value="<?= !empty($approw['lashCurl']) ? htmlspecialchars($approw['lashCurl']) : '' ?>" selected>
-                                    <?= !empty($approw['lashCurl']) ? htmlspecialchars($approw['lashCurl']) : 'choose option' ?>
-                                    </option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="rods - small">rods - small</option>
-                                    <option value="rods - medium">rods - medium</option>
-                                    <option value="rods - large">rods - large</option>
-                                    <option value="shields - small">shields - small</option>
-                                    <option value="shields - medium">shields - medium</option>
-                                    <option value="shields - large">shields - large </option>
-                                    <option value="hybrid - small">hybrid - small</option>
-                                    <option value="hybrid - medium">hybrid - medium</option>
-                                    <option value="hybrid - large">hybrid - large</option>
+                                <label for="cleanser">Cleanser</label>
+                                <select name="cleanser" id="cleanser">
+                                    <option value="<?= !empty($approw['cleanser']) ? htmlspecialchars($approw['cleanser']) : '' ?>" selected>
+                                    <?= !empty($approw['cleanser']) ? htmlspecialchars($approw['cleanser']) : 'choose option' ?>
+                                    </option> 
+                                    <option value="Pro-long cleanser">Pro-long cleanser</option>
+                                    <option value="Elleebana make-up remover">Elleebana make-up remover</option>
                                     <option value="none">none</option>
                                 </select>
                             </div>
-                        </div>
-                        <div>
+                             <div>
+                                <label for="remover">Remover</label>
+                                <select name="remover" id="remover">
+                                    <option value="<?= !empty($approw['remover']) ? htmlspecialchars($approw['remover']) : '' ?>" selected>
+                                    <?= !empty($approw['remover']) ? htmlspecialchars($approw['remover']) : 'choose option' ?>
+                                    </option>                                        
+                                    <option value="BL lashes cream remover">BL lashes cream remover</option>
+                                    <option value="My Lash Store - Eyelash Extension Remover Cream">My Lash Store - Eyelash Extension Remover Cream</option>
+                                    <option value="Lash V - Professional eyelash adhesive remover">Lash V - Professional eyelash adhesive remover</option>
+                                    <option value="Lash store HQ - Lash Reset, jelly remover">Lash store HQ - Lash Reset, jelly remover </option>
+                                    <option value="EnvoLash - cream remover">EnvoLash - cream remover</option>
+                                    <option value="none">none</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="primer">Primer</label>
+                                <select name="primer" id="primer">
+                                    <option value="<?= !empty($approw['primer']) ? htmlspecialchars($approw['primer']) : '' ?>" selected>
+                                    <?= !empty($approw['primer']) ? htmlspecialchars($approw['primer']) : 'choose option' ?>
+                                    </option> 
+                                    <option value="My Lash Store primer">My Lash Store primer</option>
+                                    <option value="Lash Store HQ primer">Lash Store HQ primer</option>
+                                    <option value="none">none</option>
+                                </select>
+                            </div>
                             <div>
                                 <label for="adhesive">Adhesive</label>
                                     <select name="adhesive" id="adhesive">
@@ -214,19 +291,17 @@ include 'src/handle_appointment.php';
                                 </select>
                             </div>
                             <div>
-                                <label for="remover">Remover</label>
-                                <select name="remover" id="remover">
-                                    <option value="<?= !empty($approw['remover']) ? htmlspecialchars($approw['remover']) : '' ?>" selected>
-                                    <?= !empty($approw['remover']) ? htmlspecialchars($approw['remover']) : 'choose option' ?>
+                                <label for="bonder">Bonder</label>
+                                <select name="bonder" id="bonder">
+                                        <option value="<?= !empty($approw['bonder']) ? htmlspecialchars($approw['bonder']) : '' ?>" selected>
+                                    <?= !empty($approw['bonder']) ? htmlspecialchars($approw['bonder']) : 'choose option' ?>
                                     </option> 
-                                                                            
-                                    <option value="BL lashes cream remover">BL lashes cream remover</option>
-                                    <option value="Lash V - Professional eyelash adhesive remover">Lash V - Professional eyelash adhesive remover</option>
-                                    <option value="Lash store HQ - Lash Reset, jelly remover">Lash store HQ - Lash Reset, jelly remover </option>
-                                    <option value="EnvoLash - cream remover">EnvoLash - cream remover</option>
+                                    <option value="My Lash Store bonder">My Lash Store bonder</option>
+                                    <option value="Lash Store HQ bonder">Lash Store HQ bonder</option>
                                     <option value="none">none</option>
                                 </select>
                             </div>
+                           
                             <div>
                                 <label for="tint">Tint</label>
                                     <select name="tint" id="tint">
@@ -252,41 +327,67 @@ include 'src/handle_appointment.php';
                                     <option value="none">none</option>
                                 </select>
                             </div>
-                            <div>
-                            <label for="primer">Primer</label>
-                                <select name="primer" id="primer">
-                                    <option value="<?= !empty($approw['primer']) ? htmlspecialchars($approw['primer']) : '' ?>" selected>
-                                <?= !empty($approw['primer']) ? htmlspecialchars($approw['primer']) : 'choose option' ?>
-                                </option> 
-                                <option value="My Lash Store primer">My Lash Store primer</option>
-                                <option value="Lash Store HQ primer">Lash Store HQ primer</option>
-                                <option value="none">none</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="bonder">Bonder</label>
-                                <select name="bonder" id="bonder">
-                                    <option value="<?= !empty($approw['bonder']) ? htmlspecialchars($approw['bonder']) : '' ?>" selected>
-                                <?= !empty($approw['bonder']) ? htmlspecialchars($approw['bonder']) : 'choose option' ?>
-                                </option> 
-                                <option value="My Lash Store bonder">My Lash Store bonder</option>
-                                <option value="Lash Store HQ bonder">Lash Store HQ bonder</option>
-                                <option value="none">none</option>
-                            </select>
-                        </div>
-                        <div>
-                        <label for="cleanser">Cleanser</label>
-                            <select name="cleanser" id="cleanser">
-                                <option value="<?= !empty($approw['cleanser']) ? htmlspecialchars($approw['cleanser']) : '' ?>" selected>
-                                <?= !empty($approw['cleanser']) ? htmlspecialchars($approw['cleanser']) : 'choose option' ?>
-                                </option> 
-                                <option value="Pro-long cleanser">Pro-long cleanser</option>
-                                <option value="Elleebana make-up remover">Elleebana make-up remover</option>
-                                <option value="none">none</option>
-                            </select>
-                        </div>
+                         
+                       
+                        
                         </div>
                         <div class="notes-container">
+                            <h2>Notes</h2>
+
+
+
+                                 <div>
+                                    <label for="lotion1">Lift lotion 1</label>
+                                    <select name="lotion1" id="lotion1">
+                                        <option value="<?= !empty($approw['lotion1']) ? htmlspecialchars($approw['lotion1']) : '' ?>" selected>
+                                        <?= !empty($approw['lotion1']) ? htmlspecialchars($approw['lotion1']) : 'choose option' ?>
+                                        </option>
+                                        <option value="3 mins">3 mins</option>
+                                        <option value="4 mins">4 mins</option>
+                                        <option value="5 mins">5 mins</option>
+                                        <option value="6 mins">6 mins</option>
+                                        <option value="7 mins">7 mins</option>
+                                        <option value="8 mins">8 mins</option>
+                                        <option value="9 mins">9 mins</option>
+                                        <option value="10 mins">10 mins</option>
+                                        <option value="11 mins">11 mins</option>
+                                        <option value="12 mins">12 mins</option>
+                                        <option value="13 mins">13 mins </option>
+                                        <option value="14 mins">14 mins</option>
+                                        <option value="15 mins">15 mins</option>
+                                        <option value="16 mins">16 mins</option>
+                                        <option value="none">none</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="lotion2">Lift lotion 2</label>
+                                    <select name="lotion2" id="lotion2">
+                                        <option value="<?= !empty($approw['lotion2']) ? htmlspecialchars($approw['lotion2']) : '' ?>" selected>
+                                        <?= !empty($approw['lotion2']) ? htmlspecialchars($approw['lotion2']) : 'choose option' ?>
+                                        </option>
+                                        <option value="3 mins">3 mins</option>
+                                        <option value="4 mins">4 mins</option>
+                                        <option value="5 mins">5 mins</option>
+                                        <option value="6 mins">6 mins</option>
+                                        <option value="7 mins">7 mins</option>
+                                        <option value="8 mins">8 mins</option>
+                                        <option value="9 mins">9 mins</option>
+                                        <option value="10 mins">10 mins</option>
+                                        <option value="11 mins">11 mins</option>
+                                        <option value="12 mins">12 mins</option>
+                                        <option value="13 mins">13 mins </option>
+                                        <option value="14 mins">14 mins</option>
+                                        <option value="15 mins">15 mins</option>
+                                        <option value="16 mins">16 mins</option>
+                                        <option value="none">none</option>
+                                    </select>
+                                </div>
+                            
+
+
+
+
+
                             <label for="appNotes">Notes</label>
                             <textarea class="textarea-large" name="appNotes" id="appNotes" value="<?=htmlspecialchars($approw['appNotes'])?>"><?=htmlspecialchars($approw['appNotes'])?></textarea>
                         </div>

@@ -69,7 +69,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             if(isset($_POST['bonder'])){
                 $bonder = $_POST['bonder'];
             }
-            if(isset($_POST['cleanser'])){
+            if(isset($_POST['lotion1'])){
+                $lotion1 = $_POST['lotion1'];
+            }
+             if(isset($_POST['lotion2'])){
+                $lotion2 = $_POST['lotion2'];
+            }
+             if(isset($_POST['cleanser'])){
                 $cleanser = $_POST['cleanser'];
             }
             if(isset($_POST['appNotes'])){
@@ -258,11 +264,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         primer,
                         bonder,
                         cleanser,
+                        lotion1,
+                        lotion2,
                         appNotes,
                         beforePhoto,
-                        afterPhoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        afterPhoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-                    $stmt->bind_param("issssssssssssssssssss", 
+                    $stmt->bind_param("issssssssssssssssssssss", 
                         $appClientID,
                         $appType,    
                         $cost,
@@ -281,6 +289,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         $primer,
                         $bonder,
                         $cleanser,
+                        $lotion1,
+                        $lotion2,
                         $appNotes,
                         $beforePhoto,
                         $afterPhoto); 
@@ -310,12 +320,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     primer = ?,
                     bonder = ?, 
                     cleanser = ?,
+                    lotion1 = ?,
+                    lotion2 = ?,
                     appNotes = ?,
                     beforePhoto = ?, 
                     afterPhoto = ?
                 WHERE appID = ?");
 
-                $stmt->bind_param("ssssssssssssssssssssi",
+                $stmt->bind_param("ssssssssssssssssssssssi",
                     $appType,
                     $cost,
                     $discount,
@@ -333,6 +345,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $primer,
                     $bonder,
                     $cleanser,
+                    $lotion1,
+                    $lotion2,
                     $appNotes,
                     $beforePhoto,
                     $afterPhoto,
@@ -353,7 +367,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
             }
             $_SESSION['appID'] = '00';
-            header('Location: clientrecord.php');
+            header('Location: dashboard.php');
         }
 }
 
@@ -417,6 +431,8 @@ if($result->num_rows > 0) {
     $approw['primer'] = "";
     $approw['bonder'] = "";
     $approw['cleanser'] = "";
+    $approw['lotion1'] = "";
+    $approw['lotion2'] = "";
     $approw['appNotes'] = "";
     $approw['beforePhoto'] = "";
     $approw['afterPhoto'] = "";
