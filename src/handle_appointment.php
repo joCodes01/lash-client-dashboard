@@ -308,9 +308,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     tint = ?, 
                     lift = ?, 
                     primer = ?,
-                    primer = ?,
                     bonder = ?, 
                     cleanser = ?,
+                    appNotes = ?,
                     beforePhoto = ?, 
                     afterPhoto = ?
                 WHERE appID = ?");

@@ -120,13 +120,46 @@ include 'src/handle_appointment.php';
                                     <input type="text" name="medication" id="medication" value="<?= htmlspecialchars($row['medication']) ?>">
                                 </div>
                             </div>
+
+
+                            <!-- LAST USED -->
                             <div>
-                                <h2>Patch test</h2>
+                                <h2>Last used</h2>
+                          
+                                <h3>Adhesive</h3>
+                                <?php if (isset($_SESSION['lastused_stronghold'])): ?>
+                                    <div class="lastused_item">
+                                        <p><?= htmlspecialchars($_SESSION['lastused_stronghold']) ?></p>
+                                        <p><?= htmlspecialchars($_SESSION['lastused_stronghold_appDate']) ?></p>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (isset($_SESSION['lastused_rapidbond'])): ?>
+                                    <div class="lastused_item">
+                                        <p><?= htmlspecialchars($_SESSION['lastused_rapidbond']) ?></p>
+                                        <p><?= htmlspecialchars($_SESSION['lastused_rapidbond_appDate']) ?></p>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (isset($_SESSION['lastused_elleliftadhesive'])): ?>
+                                    <div class="lastused_item">
+                                        <p><?= htmlspecialchars($_SESSION['lastused_elleliftadhesive']) ?></p>
+                                        <p><?= htmlspecialchars($_SESSION['lastused_elleliftadhesive_appDate']) ?></p>
+                                    </div>
+                                <?php endif; ?>
+
+                                <h3>Remover</h3>
+                                       <?php if (isset($_SESSION['lastused_blremover'])): ?>
+                                    <div class="lastused_item">
+                                        <p><?= htmlspecialchars($_SESSION['lastused_blremover']) ?></p>
+                                        <p><?= htmlspecialchars($_SESSION['lastused_blremover_appDate']) ?></p>
+                                    </div>
+                                <?php endif; ?>
+                               
+
+
+
                                 <div>
                                     <label for="adhesivePatchTest">Adhesive</label>
                                     <input type="text" name="adhesivePatchTest" id="adhesivePatchTest" value="<?=htmlspecialchars($row['adhesivePatchTest']) ?>">
-
-        
                                 </div>
                                 <div>
                                     <label for="removerPatchTest">Remover</label>
@@ -141,16 +174,21 @@ include 'src/handle_appointment.php';
                                     <input type="text" name="liftPatchTest" id="liftPatchTest" value="<?= htmlspecialchars($row['liftPatchTest']) ?>">
                                 </div>
                             </div>
+
+
+
+
+
                              <div>
                                 <div>
                                     <label for="medicalConditions">Medical conditions</label>
-                                    <textarea class="textarea-large" name="medicalConditions" id="medicalConditions" value="<?= htmlspecialchars($row['medicalConditions']) ?>"></textarea>
+                                    <textarea class="textarea-large" name="medicalConditions" id="medicalConditions"><?= htmlspecialchars($row['medicalConditions']) ?></textarea>
                                 </div>
                             </div>
                             <div>
                                 <div class="client-notes-section">
                                     <label for="clientNotes">Client notes</label>
-                                    <textarea class="textarea-large" name="clientNotes" id="clientNotes" value="<?= htmlspecialchars($row['clientNotes']) ?>"></textarea>
+                                    <textarea class="textarea-large" name="clientNotes" id="clientNotes" ><?= htmlspecialchars($row['clientNotes']) ?></textarea>
                                 </div>
                             </div>
                             
@@ -159,7 +197,7 @@ include 'src/handle_appointment.php';
                         
                     </form>
                 </div>
-            <!-- This is the appointment list section below -->
+            <!-- PREVIOUS APPOINTMENTS LIST -->
             <section>
                 <h2 class="prev-apps-title">Previous appointments</h2>
                 <?php
@@ -184,55 +222,131 @@ include 'src/handle_appointment.php';
                                             <p> <?=htmlspecialchars($appointment['appDate'])?> </p>  
                                         </div>
                                     </div>
-                                      
-                                    <!-- <div class="when-container"> -->
                                     <div class="pastapp-layout">
+                                    <?php if ($appointment['appType'] == "Lash lift & tint" || $appointment['appType'] == "Lash lift" || $appointment['appType'] == "Lift reversal"): ?>
+
+
                                         <div class="app-container">
-                                        
-                                            <table class="app-item-group-table">
-                                               
-                                                <tr class="app-item">
-                                                    <td class="bold r-space">Lash length</td>
-                                                    <td> <?=htmlspecialchars($appointment['lashLength'])?> </td>
-                                                </tr>
-                                                <tr class="app-item">
-                                                    <td class="bold r-space">Lash Brand</td>
-                                                    <td> <?=htmlspecialchars($appointment['lashBrand'])?> </td>
-                                                </tr>
-                                                <tr class="app-item">
-                                                    <td class="bold r-space">Diameter</td>
-                                                    <td> <?=htmlspecialchars($appointment['lashWidth'])?> </td>
-                                                </tr>
-                                                <tr class="app-item">
-                                                    <td class="bold r-space">Lash curl</td>
-                                                    <td> <?=htmlspecialchars($appointment['lashCurl'])?> </td>
-                                                </tr>
-                                                <tr class="app-item">
-                                                    <td class="bold r-space">Adhesive</td>
-                                                    <td> <?=htmlspecialchars($appointment['adhesive'])?> </td>
-                                                </tr>
-                                                <tr class="app-item">
-                                                    <td class="bold r-space">Remover</td>
-                                                    <td> <?=htmlspecialchars($appointment['remover'])?> </td>
-                                                </tr>
-                                                <tr class="app-item">
-                                                    <td class="bold r-space">Tint</td>
-                                                    <td> <?=htmlspecialchars($appointment['tint'])?> </td>
-                                                </tr>
-                                                <tr class="app-item">
-                                                    <td class="bold r-space">Lift</td>
-                                                    <td> <?=htmlspecialchars($appointment['lift'])?> </td>
-                                                </tr>
-                                                 <tr class="app-item">
-                                                    <td class="bold r-space">Primer</td>
-                                                    <td> <?=htmlspecialchars($appointment['primer'])?> </td>
-                                                </tr>
-                                                 <tr class="app-item">
-                                                    <td class="bold r-space">Bonder</td>
-                                                    <td> <?=htmlspecialchars($appointment['bonder'])?> </td>
-                                                </tr>
-                                            </table>
-                                        </div>
+                                                <table class="app-item-group-table">
+                                                     <tr class="app-item">
+                                                        <td class="bold r-space">Lift</td>
+                                                        <td> <?=htmlspecialchars($appointment['lift'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Tint</td>
+                                                        <td> <?=htmlspecialchars($appointment['tint'] ?? '')?> </td>
+                                                    </tr>
+                                                       <tr class="app-item">
+                                                        <td class="bold r-space">Adhesive</td>
+                                                        <td> <?=htmlspecialchars($appointment['adhesive'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Cleanser</td>
+                                                        <td> <?=htmlspecialchars($appointment['cleanser'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Remover</td>
+                                                        <td> <?=htmlspecialchars($appointment['remover'] ?? '')?> </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <?php elseif ($appointment['appType'] == "Lash tint"): ?>
+
+                                            <div class="app-container">
+                                                <table class="app-item-group-table">
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Tint</td>
+                                                        <td> <?=htmlspecialchars($appointment['tint'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Cleanser</td>
+                                                        <td> <?=htmlspecialchars($appointment['cleanser'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Remover</td>
+                                                        <td> <?=htmlspecialchars($appointment['remover'] ?? '')?> </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                             <?php elseif ($appointment['appType'] == "Patch test"): ?>
+
+                                            <div class="app-container">
+                                                <table class="app-item-group-table">
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Adhesive</td>
+                                                        <td> <?=htmlspecialchars($appointment['adhesive'] ?? '')?> </td>
+                                                    </tr>
+                                                           <tr class="app-item">
+                                                        <td class="bold r-space">Primer</td>
+                                                        <td> <?=htmlspecialchars($appointment['primer'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Bonder</td>
+                                                        <td> <?=htmlspecialchars($appointment['bonder'] ?? '')?> </td>
+                                                    </tr>
+                                                     <tr class="app-item">
+                                                        <td class="bold r-space">Lift</td>
+                                                        <td> <?=htmlspecialchars($appointment['lift'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Tint</td>
+                                                        <td> <?=htmlspecialchars($appointment['tint'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Cleanser</td>
+                                                        <td> <?=htmlspecialchars($appointment['cleanser'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Remover</td>
+                                                        <td> <?=htmlspecialchars($appointment['remover'] ?? '')?> </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+
+
+                                            <?php else: ?>
+                                            <div class="app-container">
+                                                <table class="app-item-group-table">
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Lash length</td>
+                                                        <td> <?=htmlspecialchars($appointment['lashLength'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Lash Brand</td>
+                                                        <td> <?=htmlspecialchars($appointment['lashBrand'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Diameter</td>
+                                                        <td> <?=htmlspecialchars($appointment['lashWidth'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Lash curl</td>
+                                                        <td> <?=htmlspecialchars($appointment['lashCurl'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Adhesive</td>
+                                                        <td> <?=htmlspecialchars($appointment['adhesive'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Remover</td>
+                                                        <td> <?=htmlspecialchars($appointment['remover'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Cleanser</td>
+                                                        <td> <?=htmlspecialchars($appointment['cleanser'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Primer</td>
+                                                        <td> <?=htmlspecialchars($appointment['primer'] ?? '')?> </td>
+                                                    </tr>
+                                                    <tr class="app-item">
+                                                        <td class="bold r-space">Bonder</td>
+                                                        <td> <?=htmlspecialchars($appointment['bonder'] ?? '')?> </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                     <?php endif ?>
                                         <div class="app-item-group">
                                             <h3>Notes</h3>
                                             <p> <?=htmlspecialchars($appointment['appNotes'])?> </p>
@@ -258,7 +372,7 @@ include 'src/handle_appointment.php';
                                             <table class="app-item-group-table">
                                                 <tr class="app-item">
                                                     <td class="bold r-space ">Duration</td>
-                                                    <td> <?=htmlspecialchars($appointment['duration'])?> </td>
+                                                    <td> <?=htmlspecialchars($appointment['duration'] )?> </td>
                                                 </tr>
                                                 <tr class="app-item">
                                                     <td class="bold r-space">Discount</td>

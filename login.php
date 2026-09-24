@@ -24,16 +24,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="style.css">
         <title>Login</title>
     </head>
-    <body>
-        <h2>Enter Password</h2>
-
-        <?php if ($error): ?>
-            <p style="color:red;"><?= $error ?></p>
-        <?php endif; ?>
-
-        <form method="POST">
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
+    <body class="login-page">
+         <header class="nav-container">
+            <img class="nav-logo" src="images/logo.png" alt="">
+         
+        </header>
+        <div class="login-container">
+            <h2>Enter Password</h2>
+            <?php if ($error): ?>
+                <p style="color:red;"><?= $error ?></p>
+            <?php endif; ?>
+            <form method="POST">
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </body>
 </html>

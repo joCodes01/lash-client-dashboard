@@ -160,7 +160,6 @@ include 'src/handle_appointment.php';
                                     <option value="LBLA">LBLA</option>
                                     <option value="EnvoLash">EnvoLash</option>
                                     <option value="London Lash">London Lash</option>
-                                    <option value="Elleebana - elleplex profusion">Elleebana - elleplex profusion</option>
                                     <option value="none">none</option>
                                 </select>
                             </div>
@@ -208,6 +207,9 @@ include 'src/handle_appointment.php';
                                     </option>
                                     <option value="My Lash Store - Strong Hold">My Lash Store - Strong Hold</option>
                                     <option value="Lash Store HQ - Rapid Bond">Lash Store HQ - Rapid Bond</option>
+                                    <option value="Elleebana - Lash lift adhesive">Elleebana - Lash lift adhesive</option>
+                                    <option value="Elleebana - ElleBalm">Elleebana - ElleBalm</option>
+                                    <option value="My Lash Store - Lift & Lam Balm">My Lash Store - Lift & Lam Balm</option>
                                     <option value="none">none</option>
                                 </select>
                             </div>
